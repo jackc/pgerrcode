@@ -333,3 +333,381 @@ const (
 	DataCorrupted  = "XX001"
 	IndexCorrupted = "XX002"
 )
+
+// IsSuccessfulCompletion asserts the error code class is Class 00 — Successful Completion
+func IsSuccessfulCompletion(code string) bool {
+	switch code {
+	case SuccessfulCompletion:
+		return true
+	}
+	return false
+}
+
+// IsWarning asserts the error code class is Class 01 — Warning
+func IsWarning(code string) bool {
+	switch code {
+	case Warning, DynamicResultSetsReturned, ImplicitZeroBitPadding, NullValueEliminatedInSetFunction, PrivilegeNotGranted, PrivilegeNotRevoked, StringDataRightTruncationWarning, DeprecatedFeature:
+		return true
+	}
+	return false
+}
+
+// IsNoData asserts the error code class is Class 02 — No Data (this is also a warning class per the SQL standard)
+func IsNoData(code string) bool {
+	switch code {
+	case NoData, NoAdditionalDynamicResultSetsReturned:
+		return true
+	}
+	return false
+}
+
+// IsSQLStatementNotYetComplete asserts the error code class is Class 03 — SQL Statement Not Yet Complete
+func IsSQLStatementNotYetComplete(code string) bool {
+	switch code {
+	case SQLStatementNotYetComplete:
+		return true
+	}
+	return false
+}
+
+// IsConnectionException asserts the error code class is Class 08 — Connection Exception
+func IsConnectionException(code string) bool {
+	switch code {
+	case ConnectionException, ConnectionDoesNotExist, ConnectionFailure, SQLClientUnableToEstablishSQLConnection, SQLServerRejectedEstablishmentOfSQLConnection, TransactionResolutionUnknown, ProtocolViolation:
+		return true
+	}
+	return false
+}
+
+// IsTriggeredActionException asserts the error code class is Class 09 — Triggered Action Exception
+func IsTriggeredActionException(code string) bool {
+	switch code {
+	case TriggeredActionException:
+		return true
+	}
+	return false
+}
+
+// IsFeatureNotSupported asserts the error code class is Class 0A — Feature Not Supported
+func IsFeatureNotSupported(code string) bool {
+	switch code {
+	case FeatureNotSupported:
+		return true
+	}
+	return false
+}
+
+// IsInvalidTransactionInitiation asserts the error code class is Class 0B — Invalid Transaction Initiation
+func IsInvalidTransactionInitiation(code string) bool {
+	switch code {
+	case InvalidTransactionInitiation:
+		return true
+	}
+	return false
+}
+
+// IsLocatorException asserts the error code class is Class 0F — Locator Exception
+func IsLocatorException(code string) bool {
+	switch code {
+	case LocatorException, InvalidLocatorSpecification:
+		return true
+	}
+	return false
+}
+
+// IsInvalidGrantor asserts the error code class is Class 0L — Invalid Grantor
+func IsInvalidGrantor(code string) bool {
+	switch code {
+	case InvalidGrantor, InvalidGrantOperation:
+		return true
+	}
+	return false
+}
+
+// IsInvalidRoleSpecification asserts the error code class is Class 0P — Invalid Role Specification
+func IsInvalidRoleSpecification(code string) bool {
+	switch code {
+	case InvalidRoleSpecification:
+		return true
+	}
+	return false
+}
+
+// IsDiagnosticsException asserts the error code class is Class 0Z — Diagnostics Exception
+func IsDiagnosticsException(code string) bool {
+	switch code {
+	case DiagnosticsException, StackedDiagnosticsAccessedWithoutActiveHandler:
+		return true
+	}
+	return false
+}
+
+// IsCaseNotFound asserts the error code class is Class 20 — Case Not Found
+func IsCaseNotFound(code string) bool {
+	switch code {
+	case CaseNotFound:
+		return true
+	}
+	return false
+}
+
+// IsCardinalityViolation asserts the error code class is Class 21 — Cardinality Violation
+func IsCardinalityViolation(code string) bool {
+	switch code {
+	case CardinalityViolation:
+		return true
+	}
+	return false
+}
+
+// IsDataException asserts the error code class is Class 22 — Data Exception
+func IsDataException(code string) bool {
+	switch code {
+	case DataException, ArraySubscriptError, CharacterNotInRepertoire, DatetimeFieldOverflow, DivisionByZero, ErrorInAssignment, EscapeCharacterConflict, IndicatorOverflow, IntervalFieldOverflow, InvalidArgumentForLogarithm, InvalidArgumentForNtileFunction, InvalidArgumentForNthValueFunction, InvalidArgumentForPowerFunction, InvalidArgumentForWidthBucketFunction, InvalidCharacterValueForCast, InvalidDatetimeFormat, InvalidEscapeCharacter, InvalidEscapeOctet, InvalidEscapeSequence, NonstandardUseOfEscapeCharacter, InvalidIndicatorParameterValue, InvalidParameterValue, InvalidPrecedingOrFollowingSize, InvalidRegularExpression, InvalidRowCountInLimitClause, InvalidRowCountInResultOffsetClause, InvalidTablesampleArgument, InvalidTablesampleRepeat, InvalidTimeZoneDisplacementValue, InvalidUseOfEscapeCharacter, MostSpecificTypeMismatch, NullValueNotAllowedDataException, NullValueNoIndicatorParameter, NumericValueOutOfRange, SequenceGeneratorLimitExceeded, StringDataLengthMismatch, StringDataRightTruncationDataException, SubstringError, TrimError, UnterminatedCString, ZeroLengthCharacterString, FloatingPointException, InvalidTextRepresentation, InvalidBinaryRepresentation, BadCopyFileFormat, UntranslatableCharacter, NotAnXMLDocument, InvalidXMLDocument, InvalidXMLContent, InvalidXMLComment, InvalidXMLProcessingInstruction:
+		return true
+	}
+	return false
+}
+
+// IsIntegrityConstraintViolation asserts the error code class is Class 23 — Integrity Constraint Violation
+func IsIntegrityConstraintViolation(code string) bool {
+	switch code {
+	case IntegrityConstraintViolation, RestrictViolation, NotNullViolation, ForeignKeyViolation, UniqueViolation, CheckViolation, ExclusionViolation:
+		return true
+	}
+	return false
+}
+
+// IsInvalidCursorState asserts the error code class is Class 24 — Invalid Cursor State
+func IsInvalidCursorState(code string) bool {
+	switch code {
+	case InvalidCursorState:
+		return true
+	}
+	return false
+}
+
+// IsInvalidTransactionState asserts the error code class is Class 25 — Invalid Transaction State
+func IsInvalidTransactionState(code string) bool {
+	switch code {
+	case InvalidTransactionState, ActiveSQLTransaction, BranchTransactionAlreadyActive, HeldCursorRequiresSameIsolationLevel, InappropriateAccessModeForBranchTransaction, InappropriateIsolationLevelForBranchTransaction, NoActiveSQLTransactionForBranchTransaction, ReadOnlySQLTransaction, SchemaAndDataStatementMixingNotSupported, NoActiveSQLTransaction, InFailedSQLTransaction, IdleInTransactionSessionTimeout:
+		return true
+	}
+	return false
+}
+
+// IsInvalidSQLStatementName asserts the error code class is Class 26 — Invalid SQL Statement Name
+func IsInvalidSQLStatementName(code string) bool {
+	switch code {
+	case InvalidSQLStatementName:
+		return true
+	}
+	return false
+}
+
+// IsTriggeredDataChangeViolation asserts the error code class is Class 27 — Triggered Data Change Violation
+func IsTriggeredDataChangeViolation(code string) bool {
+	switch code {
+	case TriggeredDataChangeViolation:
+		return true
+	}
+	return false
+}
+
+// IsInvalidAuthorizationSpecification asserts the error code class is Class 28 — Invalid Authorization Specification
+func IsInvalidAuthorizationSpecification(code string) bool {
+	switch code {
+	case InvalidAuthorizationSpecification, InvalidPassword:
+		return true
+	}
+	return false
+}
+
+// IsDependentPrivilegeDescriptorsStillExist asserts the error code class is Class 2B — Dependent Privilege Descriptors Still Exist
+func IsDependentPrivilegeDescriptorsStillExist(code string) bool {
+	switch code {
+	case DependentPrivilegeDescriptorsStillExist, DependentObjectsStillExist:
+		return true
+	}
+	return false
+}
+
+// IsInvalidTransactionTermination asserts the error code class is Class 2D — Invalid Transaction Termination
+func IsInvalidTransactionTermination(code string) bool {
+	switch code {
+	case InvalidTransactionTermination:
+		return true
+	}
+	return false
+}
+
+// IsSQLRoutineException asserts the error code class is Class 2F — SQL Routine Exception
+func IsSQLRoutineException(code string) bool {
+	switch code {
+	case SQLRoutineException, FunctionExecutedNoReturnStatement, ModifyingSQLDataNotPermittedSQLRoutineException, ProhibitedSQLStatementAttemptedSQLRoutineException, ReadingSQLDataNotPermittedSQLRoutineException:
+		return true
+	}
+	return false
+}
+
+// IsInvalidCursorName asserts the error code class is Class 34 — Invalid Cursor Name
+func IsInvalidCursorName(code string) bool {
+	switch code {
+	case InvalidCursorName:
+		return true
+	}
+	return false
+}
+
+// IsExternalRoutineException asserts the error code class is Class 38 — External Routine Exception
+func IsExternalRoutineException(code string) bool {
+	switch code {
+	case ExternalRoutineException, ContainingSQLNotPermitted, ModifyingSQLDataNotPermittedExternalRoutineException, ProhibitedSQLStatementAttemptedExternalRoutineException, ReadingSQLDataNotPermittedExternalRoutineException:
+		return true
+	}
+	return false
+}
+
+// IsExternalRoutineInvocationException asserts the error code class is Class 39 — External Routine Invocation Exception
+func IsExternalRoutineInvocationException(code string) bool {
+	switch code {
+	case ExternalRoutineInvocationException, InvalidSQLstateReturned, NullValueNotAllowedExternalRoutineInvocationException, TriggerProtocolViolated, SRFProtocolViolated, EventTriggerProtocolViolated:
+		return true
+	}
+	return false
+}
+
+// IsSavepointException asserts the error code class is Class 3B — Savepoint Exception
+func IsSavepointException(code string) bool {
+	switch code {
+	case SavepointException, InvalidSavepointSpecification:
+		return true
+	}
+	return false
+}
+
+// IsInvalidCatalogName asserts the error code class is Class 3D — Invalid Catalog Name
+func IsInvalidCatalogName(code string) bool {
+	switch code {
+	case InvalidCatalogName:
+		return true
+	}
+	return false
+}
+
+// IsInvalidSchemaName asserts the error code class is Class 3F — Invalid Schema Name
+func IsInvalidSchemaName(code string) bool {
+	switch code {
+	case InvalidSchemaName:
+		return true
+	}
+	return false
+}
+
+// IsTransactionRollback asserts the error code class is Class 40 — Transaction Rollback
+func IsTransactionRollback(code string) bool {
+	switch code {
+	case TransactionRollback, TransactionIntegrityConstraintViolation, SerializationFailure, StatementCompletionUnknown, DeadlockDetected:
+		return true
+	}
+	return false
+}
+
+// IsSyntaxErrororAccessRuleViolation asserts the error code class is Class 42 — Syntax Error or Access Rule Violation
+func IsSyntaxErrororAccessRuleViolation(code string) bool {
+	switch code {
+	case SyntaxErrorOrAccessRuleViolation, SyntaxError, InsufficientPrivilege, CannotCoerce, GroupingError, WindowingError, InvalidRecursion, InvalidForeignKey, InvalidName, NameTooLong, ReservedName, DatatypeMismatch, IndeterminateDatatype, CollationMismatch, IndeterminateCollation, WrongObjectType, GeneratedAlways, UndefinedColumn, UndefinedFunction, UndefinedTable, UndefinedParameter, UndefinedObject, DuplicateColumn, DuplicateCursor, DuplicateDatabase, DuplicateFunction, DuplicatePreparedStatement, DuplicateSchema, DuplicateTable, DuplicateAlias, DuplicateObject, AmbiguousColumn, AmbiguousFunction, AmbiguousParameter, AmbiguousAlias, InvalidColumnReference, InvalidColumnDefinition, InvalidCursorDefinition, InvalidDatabaseDefinition, InvalidFunctionDefinition, InvalidPreparedStatementDefinition, InvalidSchemaDefinition, InvalidTableDefinition, InvalidObjectDefinition:
+		return true
+	}
+	return false
+}
+
+// IsWITHCHECKOPTIONViolation asserts the error code class is Class 44 — WITH CHECK OPTION Violation
+func IsWITHCHECKOPTIONViolation(code string) bool {
+	switch code {
+	case WithCheckOptionViolation:
+		return true
+	}
+	return false
+}
+
+// IsInsufficientResources asserts the error code class is Class 53 — Insufficient Resources
+func IsInsufficientResources(code string) bool {
+	switch code {
+	case InsufficientResources, DiskFull, OutOfMemory, TooManyConnections, ConfigurationLimitExceeded:
+		return true
+	}
+	return false
+}
+
+// IsProgramLimitExceeded asserts the error code class is Class 54 — Program Limit Exceeded
+func IsProgramLimitExceeded(code string) bool {
+	switch code {
+	case ProgramLimitExceeded, StatementTooComplex, TooManyColumns, TooManyArguments:
+		return true
+	}
+	return false
+}
+
+// IsObjectNotInPrerequisiteState asserts the error code class is Class 55 — Object Not In Prerequisite State
+func IsObjectNotInPrerequisiteState(code string) bool {
+	switch code {
+	case ObjectNotInPrerequisiteState, ObjectInUse, CantChangeRuntimeParam, LockNotAvailable:
+		return true
+	}
+	return false
+}
+
+// IsOperatorIntervention asserts the error code class is Class 57 — Operator Intervention
+func IsOperatorIntervention(code string) bool {
+	switch code {
+	case OperatorIntervention, QueryCanceled, AdminShutdown, CrashShutdown, CannotConnectNow, DatabaseDropped:
+		return true
+	}
+	return false
+}
+
+// IsSystemError asserts the error code class is Class 58 — System Error (errors external to PostgreSQL itself)
+func IsSystemError(code string) bool {
+	switch code {
+	case SystemError, IOError, UndefinedFile, DuplicateFile:
+		return true
+	}
+	return false
+}
+
+// IsSnapshotFailure asserts the error code class is Class 72 — Snapshot Failure
+func IsSnapshotFailure(code string) bool {
+	switch code {
+	case SnapshotTooOld:
+		return true
+	}
+	return false
+}
+
+// IsConfigurationFileError asserts the error code class is Class F0 — Configuration File Error
+func IsConfigurationFileError(code string) bool {
+	switch code {
+	case ConfigFileError, LockFileExists:
+		return true
+	}
+	return false
+}
+
+// IsForeignDataWrapperError asserts the error code class is Class HV — Foreign Data Wrapper Error (SQL/MED)
+func IsForeignDataWrapperError(code string) bool {
+	switch code {
+	case FDWError, FDWColumnNameNotFound, FDWDynamicParameterValueNeeded, FDWFunctionSequenceError, FDWInconsistentDescriptorInformation, FDWInvalidAttributeValue, FDWInvalidColumnName, FDWInvalidColumnNumber, FDWInvalidDataType, FDWInvalidDataTypeDescriptors, FDWInvalidDescriptorFieldIdentifier, FDWInvalidHandle, FDWInvalidOptionIndex, FDWInvalidOptionName, FDWInvalidStringLengthOrBufferLength, FDWInvalidStringFormat, FDWInvalidUseOfNullPointer, FDWTooManyHandles, FDWOutOfMemory, FDWNoSchemas, FDWOptionNameNotFound, FDWReplyHandle, FDWSchemaNotFound, FDWTableNotFound, FDWUnableToCreateExecution, FDWUnableToCreateReply, FDWUnableToEstablishConnection:
+		return true
+	}
+	return false
+}
+
+// IsPLpgSQLError asserts the error code class is Class P0 — PL/pgSQL Error
+func IsPLpgSQLError(code string) bool {
+	switch code {
+	case PLpgSQLError, RaiseException, NoDataFound, TooManyRows, AssertFailure:
+		return true
+	}
+	return false
+}
