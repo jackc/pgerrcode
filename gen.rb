@@ -48,13 +48,15 @@ def build_assert_func(last_cls, last_cls_full, cls_errs)
   GO
 end
 
-puts "// Package pgerrcode contains constants for PostgreSQL error codes."
-puts "package pgerrcode"
-puts ""
-puts "// Source: https://www.postgresql.org/docs/11/errcodes-appendix.html"
-puts "// See gen.rb for script that can convert the error code table to Go code."
-puts ""
-puts "const ("
+puts <<~STR
+// Package pgerrcode contains constants for PostgreSQL error codes.
+package pgerrcode
+
+// Source: https://www.postgresql.org/docs/11/errcodes-appendix.html
+// See gen.rb for script that can convert the error code table to Go code.
+
+const (
+STR
 
 ARGF.each do |line|
   case line
