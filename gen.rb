@@ -35,6 +35,19 @@ cls_assertions = Array.new
 last_cls = ""
 last_cls_full = ""
 
+def build_assert_func(last_cls, last_cls_full, cls_errs)
+  <<~GO
+  // Is#{last_cls} asserts the error code class is #{last_cls_full}
+  func Is#{last_cls} (code string) bool {
+      switch code{
+          case #{cls_errs.join(", ")}:
+              return true
+      }
+      return false
+  }
+  GO
+end
+
 puts "// Package pgerrcode contains constants for PostgreSQL error codes."
 puts "package pgerrcode"
 puts ""
@@ -47,16 +60,8 @@ ARGF.each do |line|
   case line
   when /^Class/
     if cls_errs.length > 0 && last_cls != ""
-      this_cls_errs = cls_errs.join(", ")
-      assert_func = "// Is#{last_cls} asserts the error code class is #{last_cls_full}\n" \
-       "func Is#{last_cls} (code string) bool {\n" \
-       "    switch code{\n" \
-       "        case #{this_cls_errs}:\n" \
-       "            return true\n" \
-       "    }\n" \
-       "    return false\n" \
-       "}\n"
-       cls_assertions.push(assert_func)
+      assert_func = build_assert_func(last_cls, last_cls_full, cls_errs)
+      cls_assertions.push(assert_func)
     end
     last_cls = line.split("—")[1]
     .gsub(" ", "")
@@ -84,6 +89,12 @@ ARGF.each do |line|
   end
 end
 puts ")"
+
+if cls_errs.length > 0
+  assert_func = build_assert_func(last_cls, last_cls_full, cls_errs)
+  cls_assertions.push(assert_func)
+end
+
 cls_assertions.each do |cls_assertion|
   puts cls_assertion
 end
