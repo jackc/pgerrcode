@@ -30,6 +30,11 @@ code_name_overrides = {
   "P0000" => "PLpgSQLError"
 }
 
+class_name_overrides = {
+  # Go casing corrections
+  "WITHCHECKOPTIONViolation" => "WithCheckOptionViolation"
+}
+
 cls_errs = Array.new
 cls_assertions = Array.new
 last_cls = ""
@@ -62,7 +67,7 @@ ARGF.each do |line|
   case line
   when /^Class/
     if cls_errs.length > 0 && last_cls != ""
-      assert_func = build_assert_func(last_cls, last_cls_full, cls_errs)
+      assert_func = build_assert_func(class_name_overrides.fetch(last_cls) { last_cls }, last_cls_full, cls_errs)
       cls_assertions.push(assert_func)
     end
     last_cls = line.split("—")[1]
@@ -94,7 +99,7 @@ end
 puts ")"
 
 if cls_errs.length > 0
-  assert_func = build_assert_func(last_cls, last_cls_full, cls_errs)
+  assert_func = build_assert_func(class_name_overrides.fetch(last_cls) { last_cls }, last_cls_full, cls_errs)
   cls_assertions.push(assert_func)
 end
 

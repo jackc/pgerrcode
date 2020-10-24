@@ -639,8 +639,8 @@ func IsSyntaxErrororAccessRuleViolation(code string) bool {
 	return false
 }
 
-// IsWITHCHECKOPTIONViolation asserts the error code class is Class 44 — WITH CHECK OPTION Violation
-func IsWITHCHECKOPTIONViolation(code string) bool {
+// IsWithCheckOptionViolation asserts the error code class is Class 44 — WITH CHECK OPTION Violation
+func IsWithCheckOptionViolation(code string) bool {
 	switch code {
 	case WithCheckOptionViolation:
 		return true
