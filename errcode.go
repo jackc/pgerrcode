@@ -1,7 +1,7 @@
 // Package pgerrcode contains constants for PostgreSQL error codes.
 package pgerrcode
 
-// Source: https://www.postgresql.org/docs/11/errcodes-appendix.html
+// Source: https://www.postgresql.org/docs/13/errcodes-appendix.html
 // See gen.rb for script that can convert the error code table to Go code.
 
 const (
@@ -66,57 +66,73 @@ const (
 	CardinalityViolation = "21000"
 
 	// Class 22 — Data Exception
-	DataException                          = "22000"
-	ArraySubscriptError                    = "2202E"
-	CharacterNotInRepertoire               = "22021"
-	DatetimeFieldOverflow                  = "22008"
-	DivisionByZero                         = "22012"
-	ErrorInAssignment                      = "22005"
-	EscapeCharacterConflict                = "2200B"
-	IndicatorOverflow                      = "22022"
-	IntervalFieldOverflow                  = "22015"
-	InvalidArgumentForLogarithm            = "2201E"
-	InvalidArgumentForNtileFunction        = "22014"
-	InvalidArgumentForNthValueFunction     = "22016"
-	InvalidArgumentForPowerFunction        = "2201F"
-	InvalidArgumentForWidthBucketFunction  = "2201G"
-	InvalidCharacterValueForCast           = "22018"
-	InvalidDatetimeFormat                  = "22007"
-	InvalidEscapeCharacter                 = "22019"
-	InvalidEscapeOctet                     = "2200D"
-	InvalidEscapeSequence                  = "22025"
-	NonstandardUseOfEscapeCharacter        = "22P06"
-	InvalidIndicatorParameterValue         = "22010"
-	InvalidParameterValue                  = "22023"
-	InvalidPrecedingOrFollowingSize        = "22013"
-	InvalidRegularExpression               = "2201B"
-	InvalidRowCountInLimitClause           = "2201W"
-	InvalidRowCountInResultOffsetClause    = "2201X"
-	InvalidTablesampleArgument             = "2202H"
-	InvalidTablesampleRepeat               = "2202G"
-	InvalidTimeZoneDisplacementValue       = "22009"
-	InvalidUseOfEscapeCharacter            = "2200C"
-	MostSpecificTypeMismatch               = "2200G"
-	NullValueNotAllowedDataException       = "22004"
-	NullValueNoIndicatorParameter          = "22002"
-	NumericValueOutOfRange                 = "22003"
-	SequenceGeneratorLimitExceeded         = "2200H"
-	StringDataLengthMismatch               = "22026"
-	StringDataRightTruncationDataException = "22001"
-	SubstringError                         = "22011"
-	TrimError                              = "22027"
-	UnterminatedCString                    = "22024"
-	ZeroLengthCharacterString              = "2200F"
-	FloatingPointException                 = "22P01"
-	InvalidTextRepresentation              = "22P02"
-	InvalidBinaryRepresentation            = "22P03"
-	BadCopyFileFormat                      = "22P04"
-	UntranslatableCharacter                = "22P05"
-	NotAnXMLDocument                       = "2200L"
-	InvalidXMLDocument                     = "2200M"
-	InvalidXMLContent                      = "2200N"
-	InvalidXMLComment                      = "2200S"
-	InvalidXMLProcessingInstruction        = "2200T"
+	DataException                             = "22000"
+	ArraySubscriptError                       = "2202E"
+	CharacterNotInRepertoire                  = "22021"
+	DatetimeFieldOverflow                     = "22008"
+	DivisionByZero                            = "22012"
+	ErrorInAssignment                         = "22005"
+	EscapeCharacterConflict                   = "2200B"
+	IndicatorOverflow                         = "22022"
+	IntervalFieldOverflow                     = "22015"
+	InvalidArgumentForLogarithm               = "2201E"
+	InvalidArgumentForNtileFunction           = "22014"
+	InvalidArgumentForNthValueFunction        = "22016"
+	InvalidArgumentForPowerFunction           = "2201F"
+	InvalidArgumentForWidthBucketFunction     = "2201G"
+	InvalidCharacterValueForCast              = "22018"
+	InvalidDatetimeFormat                     = "22007"
+	InvalidEscapeCharacter                    = "22019"
+	InvalidEscapeOctet                        = "2200D"
+	InvalidEscapeSequence                     = "22025"
+	NonstandardUseOfEscapeCharacter           = "22P06"
+	InvalidIndicatorParameterValue            = "22010"
+	InvalidParameterValue                     = "22023"
+	InvalidPrecedingOrFollowingSize           = "22013"
+	InvalidRegularExpression                  = "2201B"
+	InvalidRowCountInLimitClause              = "2201W"
+	InvalidRowCountInResultOffsetClause       = "2201X"
+	InvalidTablesampleArgument                = "2202H"
+	InvalidTablesampleRepeat                  = "2202G"
+	InvalidTimeZoneDisplacementValue          = "22009"
+	InvalidUseOfEscapeCharacter               = "2200C"
+	MostSpecificTypeMismatch                  = "2200G"
+	NullValueNotAllowedDataException          = "22004"
+	NullValueNoIndicatorParameter             = "22002"
+	NumericValueOutOfRange                    = "22003"
+	SequenceGeneratorLimitExceeded            = "2200H"
+	StringDataLengthMismatch                  = "22026"
+	StringDataRightTruncationDataException    = "22001"
+	SubstringError                            = "22011"
+	TrimError                                 = "22027"
+	UnterminatedCString                       = "22024"
+	ZeroLengthCharacterString                 = "2200F"
+	FloatingPointException                    = "22P01"
+	InvalidTextRepresentation                 = "22P02"
+	InvalidBinaryRepresentation               = "22P03"
+	BadCopyFileFormat                         = "22P04"
+	UntranslatableCharacter                   = "22P05"
+	NotAnXMLDocument                          = "2200L"
+	InvalidXMLDocument                        = "2200M"
+	InvalidXMLContent                         = "2200N"
+	InvalidXMLComment                         = "2200S"
+	InvalidXMLProcessingInstruction           = "2200T"
+	DuplicateJSONObjectKeyValue               = "22030"
+	InvalidArgumentForSQLJSONDatetimeFunction = "22031"
+	InvalidJSONText                           = "22032"
+	InvalidSQLJSONSubscript                   = "22033"
+	MoreThanOneSQLJSONItem                    = "22034"
+	NoSQLJSONItem                             = "22035"
+	NonNumericSQLJSONItem                     = "22036"
+	NonUniqueKeysInAJSONObject                = "22037"
+	SingletonSQLJSONItemRequired              = "22038"
+	SQLJSONArrayNotFound                      = "22039"
+	SQLJSONMemberNotFound                     = "2203A"
+	SQLJSONNumberNotFound                     = "2203B"
+	SQLJSONObjectNotFound                     = "2203C"
+	TooManyJSONArrayElements                  = "2203D"
+	TooManyJSONObjectMembers                  = "2203E"
+	SQLJSONScalarRequired                     = "2203F"
 
 	// Class 23 — Integrity Constraint Violation
 	IntegrityConstraintViolation = "23000"
@@ -270,6 +286,7 @@ const (
 	ObjectInUse                  = "55006"
 	CantChangeRuntimeParam       = "55P02"
 	LockNotAvailable             = "55P03"
+	UnsafeNewEnumValueUsage      = "55P04"
 
 	// Class 57 — Operator Intervention
 	OperatorIntervention = "57000"
@@ -463,7 +480,7 @@ func IsCardinalityViolation(code string) bool {
 // IsDataException asserts the error code class is Class 22 — Data Exception
 func IsDataException(code string) bool {
 	switch code {
-	case DataException, ArraySubscriptError, CharacterNotInRepertoire, DatetimeFieldOverflow, DivisionByZero, ErrorInAssignment, EscapeCharacterConflict, IndicatorOverflow, IntervalFieldOverflow, InvalidArgumentForLogarithm, InvalidArgumentForNtileFunction, InvalidArgumentForNthValueFunction, InvalidArgumentForPowerFunction, InvalidArgumentForWidthBucketFunction, InvalidCharacterValueForCast, InvalidDatetimeFormat, InvalidEscapeCharacter, InvalidEscapeOctet, InvalidEscapeSequence, NonstandardUseOfEscapeCharacter, InvalidIndicatorParameterValue, InvalidParameterValue, InvalidPrecedingOrFollowingSize, InvalidRegularExpression, InvalidRowCountInLimitClause, InvalidRowCountInResultOffsetClause, InvalidTablesampleArgument, InvalidTablesampleRepeat, InvalidTimeZoneDisplacementValue, InvalidUseOfEscapeCharacter, MostSpecificTypeMismatch, NullValueNotAllowedDataException, NullValueNoIndicatorParameter, NumericValueOutOfRange, SequenceGeneratorLimitExceeded, StringDataLengthMismatch, StringDataRightTruncationDataException, SubstringError, TrimError, UnterminatedCString, ZeroLengthCharacterString, FloatingPointException, InvalidTextRepresentation, InvalidBinaryRepresentation, BadCopyFileFormat, UntranslatableCharacter, NotAnXMLDocument, InvalidXMLDocument, InvalidXMLContent, InvalidXMLComment, InvalidXMLProcessingInstruction:
+	case DataException, ArraySubscriptError, CharacterNotInRepertoire, DatetimeFieldOverflow, DivisionByZero, ErrorInAssignment, EscapeCharacterConflict, IndicatorOverflow, IntervalFieldOverflow, InvalidArgumentForLogarithm, InvalidArgumentForNtileFunction, InvalidArgumentForNthValueFunction, InvalidArgumentForPowerFunction, InvalidArgumentForWidthBucketFunction, InvalidCharacterValueForCast, InvalidDatetimeFormat, InvalidEscapeCharacter, InvalidEscapeOctet, InvalidEscapeSequence, NonstandardUseOfEscapeCharacter, InvalidIndicatorParameterValue, InvalidParameterValue, InvalidPrecedingOrFollowingSize, InvalidRegularExpression, InvalidRowCountInLimitClause, InvalidRowCountInResultOffsetClause, InvalidTablesampleArgument, InvalidTablesampleRepeat, InvalidTimeZoneDisplacementValue, InvalidUseOfEscapeCharacter, MostSpecificTypeMismatch, NullValueNotAllowedDataException, NullValueNoIndicatorParameter, NumericValueOutOfRange, SequenceGeneratorLimitExceeded, StringDataLengthMismatch, StringDataRightTruncationDataException, SubstringError, TrimError, UnterminatedCString, ZeroLengthCharacterString, FloatingPointException, InvalidTextRepresentation, InvalidBinaryRepresentation, BadCopyFileFormat, UntranslatableCharacter, NotAnXMLDocument, InvalidXMLDocument, InvalidXMLContent, InvalidXMLComment, InvalidXMLProcessingInstruction, DuplicateJSONObjectKeyValue, InvalidArgumentForSQLJSONDatetimeFunction, InvalidJSONText, InvalidSQLJSONSubscript, MoreThanOneSQLJSONItem, NoSQLJSONItem, NonNumericSQLJSONItem, NonUniqueKeysInAJSONObject, SingletonSQLJSONItemRequired, SQLJSONArrayNotFound, SQLJSONMemberNotFound, SQLJSONNumberNotFound, SQLJSONObjectNotFound, TooManyJSONArrayElements, TooManyJSONObjectMembers, SQLJSONScalarRequired:
 		return true
 	}
 	return false
@@ -652,7 +669,7 @@ func IsProgramLimitExceeded(code string) bool {
 // IsObjectNotInPrerequisiteState asserts the error code class is Class 55 — Object Not In Prerequisite State
 func IsObjectNotInPrerequisiteState(code string) bool {
 	switch code {
-	case ObjectNotInPrerequisiteState, ObjectInUse, CantChangeRuntimeParam, LockNotAvailable:
+	case ObjectNotInPrerequisiteState, ObjectInUse, CantChangeRuntimeParam, LockNotAvailable, UnsafeNewEnumValueUsage:
 		return true
 	}
 	return false
@@ -707,6 +724,15 @@ func IsForeignDataWrapperError(code string) bool {
 func IsPLpgSQLError(code string) bool {
 	switch code {
 	case PLpgSQLError, RaiseException, NoDataFound, TooManyRows, AssertFailure:
+		return true
+	}
+	return false
+}
+
+// IsInternalError asserts the error code class is Class XX — Internal Error
+func IsInternalError(code string) bool {
+	switch code {
+	case InternalError, DataCorrupted, IndexCorrupted:
 		return true
 	}
 	return false
