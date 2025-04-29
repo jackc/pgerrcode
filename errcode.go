@@ -1,7 +1,7 @@
 // Package pgerrcode contains constants for PostgreSQL error codes.
 package pgerrcode
 
-// Source: https://www.postgresql.org/docs/16/errcodes-appendix.html
+// Source: https://www.postgresql.org/docs/17/errcodes-appendix.html
 // See gen.rb for script that can convert the error code table to Go code.
 
 const (
@@ -160,6 +160,7 @@ const (
 	NoActiveSQLTransaction                          = "25P01"
 	InFailedSQLTransaction                          = "25P02"
 	IdleInTransactionSessionTimeout                 = "25P03"
+	TransactionTimeout                              = "25P04"
 
 	// Class 26 — Invalid SQL Statement Name
 	InvalidSQLStatementName = "26000"
@@ -303,9 +304,6 @@ const (
 	IOError       = "58030"
 	UndefinedFile = "58P01"
 	DuplicateFile = "58P02"
-
-	// Class 72 — Snapshot Failure
-	SnapshotTooOld = "72000"
 
 	// Class F0 — Configuration File Error
 	ConfigFileError = "F0000"
@@ -509,7 +507,7 @@ func IsInvalidCursorState(code string) bool {
 // IsInvalidTransactionState asserts the error code class is Class 25 — Invalid Transaction State
 func IsInvalidTransactionState(code string) bool {
 	switch code {
-	case InvalidTransactionState, ActiveSQLTransaction, BranchTransactionAlreadyActive, HeldCursorRequiresSameIsolationLevel, InappropriateAccessModeForBranchTransaction, InappropriateIsolationLevelForBranchTransaction, NoActiveSQLTransactionForBranchTransaction, ReadOnlySQLTransaction, SchemaAndDataStatementMixingNotSupported, NoActiveSQLTransaction, InFailedSQLTransaction, IdleInTransactionSessionTimeout:
+	case InvalidTransactionState, ActiveSQLTransaction, BranchTransactionAlreadyActive, HeldCursorRequiresSameIsolationLevel, InappropriateAccessModeForBranchTransaction, InappropriateIsolationLevelForBranchTransaction, NoActiveSQLTransactionForBranchTransaction, ReadOnlySQLTransaction, SchemaAndDataStatementMixingNotSupported, NoActiveSQLTransaction, InFailedSQLTransaction, IdleInTransactionSessionTimeout, TransactionTimeout:
 		return true
 	}
 	return false
@@ -690,15 +688,6 @@ func IsOperatorIntervention(code string) bool {
 func IsSystemError(code string) bool {
 	switch code {
 	case SystemError, IOError, UndefinedFile, DuplicateFile:
-		return true
-	}
-	return false
-}
-
-// IsSnapshotFailure asserts the error code class is Class 72 — Snapshot Failure
-func IsSnapshotFailure(code string) bool {
-	switch code {
-	case SnapshotTooOld:
 		return true
 	}
 	return false
